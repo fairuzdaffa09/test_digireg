@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import Header from "./Components/Header/Header";
+import MapComponent from "./Components/MapComponent/MapComponent";
 
 function App() {
+  const [isValid, setIsValid] = useState(false);
+
+  function mapValid() {
+    setIsValid(!isValid);
+    console.log(isValid);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <MapComponent mapClicked={mapValid} />
+
+      {isValid ? <p>Data should appear</p> : <p>Data empty</p>}
     </div>
   );
 }
